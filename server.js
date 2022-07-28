@@ -60,6 +60,9 @@ let server = http.createServer((req,res)=>{
                     throw new Error(err.message)
                 }
                 else {
+                    
+
+                    
                     res.writeHead(200, {'Content-Type':'text/html'});
                     res.write(data);
                     return res.end();
@@ -166,3 +169,4 @@ let server = http.createServer((req,res)=>{
 server.listen(8002, ()=>{
     console.log('Server is running http//:localhost:8002');
 });
+

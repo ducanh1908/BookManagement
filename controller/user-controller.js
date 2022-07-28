@@ -20,6 +20,7 @@ class UserController {
                 users.map((user,index)=>{
                     tbody += ` 
                     <tr>
+
                     <td ">${user.Username}</td>
                     <td ">${user.Password}</td>
                     <td ">${user.Address}</td>
@@ -27,8 +28,7 @@ class UserController {
                     <td ">${user.Email}</td>
                     <td ">${user.PhoneNumber}</td>
                     </tr>`
-                    // <td><a href="/views/update/${user.id}" class="btn btn-primary">Edit</a></td>
-                    // <td><a href="/views/delete/${user.id}" class="btn btn-danger">Delete</a></td>
+                    
                 });
                 
                 data = data.replace('{user}', tbody)
@@ -201,6 +201,31 @@ class UserController {
                            return res.end();
                        }
                        else {
+                        let  data = '';
+                        req.on('data', chunk => {
+                            data += chunk;
+                        })
+                        req.on('end', () => {
+                            data = qs.parse(data);
+                            console.log(data);
+                            let expires = Date.now() + 1000*60*60;
+                            let tokenSession = "{\"name\":\""+data.name+"\",\"email\":\""+data.email+"\",\"password\":\""+data.password+"\",\"expires\":"+expires+"}";
+                            createTokenSession(tokenSession);
+                            fs.readFile('./views/homeuser.html', 'utf8', function (err, datahtml) {
+                                if (err) {
+                                    throw new Error(err.message)
+                                }
+                                datahtml = datahtml.replace('{username}', data.name);
+                                datahtml = datahtml.replace('{email}', data.email);
+                                datahtml = datahtml.replace('{password}', data.password);
+                                res.writeHead(200, { 'Content-Type': 'text/html' });
+                                res.write(datahtml);
+                                return res.end();
+                            });
+                        })
+                        req.on('error', () => {
+                            console.log('error')
+                        })
                            res.writeHead(301, {location:'/user'})
                            return res.end();
                        }
@@ -215,5 +240,27 @@ class UserController {
             });    
         }
 
+}
+//session
+
+var createTokenSession = function (data){
+    //tao ngau nhien ten file
+    let tokenId = createRandomString(20);
+    let fileName = './token/' + tokenId;
+    fs.writeFile(fileName, data, err => {
+    });
+}
+
+var createRandomString = function (strLength){
+    strLength = typeof(strLength) == 'number' & strLength >0 ? strLength:false;
+    if (strLength){
+        var possibleCharacter = 'abcdefghiklmnopqwerszx1234567890';
+        var str='';
+        for (let i = 0; i <strLength ; i++) {
+            let ramdomCharater = possibleCharacter.charAt(Math.floor(Math.random()*possibleCharacter.length));
+            str+=ramdomCharater;
+        }
+        return str;
+    }
 }
 module.exports = UserController;
