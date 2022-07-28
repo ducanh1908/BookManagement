@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+
+  <style>
+    .gradient-custom-3 {
+      /* fallback for old browsers */
+      background: #84fab0;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(
+        to right,
+        rgba(132, 250, 176, 0.5),
+        rgba(143, 211, 244, 0.5)
+      );
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(
+        to right,
+        rgba(132, 250, 176, 0.5),
+        rgba(143, 211, 244, 0.5)
+      );
+    }
+    .gradient-custom-4 {
+      /* fallback for old browsers */
+      background: #84fab0;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(
+        to right,
+        rgba(132, 250, 176, 1),
+        rgba(143, 211, 244, 1)
+      );
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(
+        to right,
+        rgba(132, 250, 176, 1),
+        rgba(143, 211, 244, 1)
+      );
+    }
+  </style>
+  <body>
+    <section
+      class="vh-100 bg-image"
+      style="
+        background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+      "
+    >
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div
+            class="row d-flex justify-content-center align-items-center h-100"
+          >
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px">
+                <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center mb-5">
+                    Create an account
+                  </h2>
+
+                  <form
+                    action="/register/"
+                    method="post"
+                    onclick="FormValidate()"
+                  >
+                    <div class="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="username"
+                        class="form-control form-control-lg"
+                        name="username"
+                      />
+                      <label class="form-label" for="form3Example1cg"
+                        >Your Name</label
+                      >
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="password"
+                        class="form-control form-control-lg"
+                        name="password"
+                      />
+                      <label class="form-label" for="form3Example4cg"
+                        >Password</label
+                      >
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="address"
+                        class="form-control form-control-lg"
+                        name="address"
+                      />
+                      <label class="form-label" for="form3Example4cdg"
+                        >Address</label
+                      >
+                    </div>
+
+                    <div class="form-outline mb-4">
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control form-control-lg"
+                        name="email"
+                      />
+                      <label class="form-label" for="form3Example3cg"
+                        >Your Email</label
+                      >
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="phonenumber"
+                        class="form-control form-control-lg"
+                        name="phonenumber"
+                      />
+                      <label class="form-label" for="form3Example4cdg"
+                        >PhoneNumber</label
+                      >
+                    </div>
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input
+                        class="form-check-input me-2"
+                        type="checkbox"
+                        value=""
+                        id="form2Example3cg"
+                      />
+                      <label class="form-check-label" for="form2Example3g">
+                        I agree all statements in
+                        <a href="#!" class="text-body"
+                          ><u>Terms of service</u></a
+                        >
+                      </label>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                      >
+                        Register
+                      </button>
+                    </div>
+
+                    <p class="text-center text-muted mt-5 mb-0">
+                      Have already an account?
+                      <a href="/login/" class="fw-bold text-body"
+                        ><u>Login here</u></a
+                      >
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function FormValidate() {
+        let name = document.getElementById("name").value;
+        let errorName = document.getElementById("errorName");
+        let regexName = /^[^\d+]*[\d+]{0}[^\d+]*$/;
+
+        let phone = document.getElementById("phone").value;
+        let erorPhone = document.getElementById("erorPhone");
+        let regexPhone = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+
+        let email = document.getElementById("email").value;
+        let errorEmail = document.getElementById("erorEmail");
+        let reGexEmail = /^[\w.+\-]+@gmail\.com$/g;
+
+        let regexPass =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
+
+        if (name == "" || name == null) {
+          errorName.innerHTML = "Họ tên không được để trống!";
+        } else if (!regexName.test(name)) {
+          errorName.innerHTML = "Họ tên không hợp lệ!";
+          return false;
+        } else {
+          errorName.innerHTML = "";
+        }
+
+        if (phone == "" || phone == null) {
+          erorPhone.innerHTML = "Số điện thoại không được để trống!";
+        } else if (!regexPhone.test(phone)) {
+          erorPhone.innerHTML = "SĐT không hợp lệ!";
+          return false;
+        } else {
+          erorPhone.innerHTML = "";
+        }
+
+        if (email == "" || email == null) {
+          errorEmail.innerHTML = "Email không được để trống!";
+        } else if (!reGexEmail.test(email)) {
+          errorEmail.innerHTML = "Email không hợp lệ!";
+          email = "";
+        } else {
+          errorEmail.innerHTML = "";
+        }
+
+        let passW = document.getElementById("pass").value;
+        let errorPass = document.getElementById("errorPass");
+
+        if (passW == "" || passW == null) {
+          errorPass.innerHTML = "Mật khẩu vui lòng không để trống!";
+        } else if (!regexPass.test(passW)) {
+          errorPass.innerHTML = "Định dạng mật khẩu không đúng";
+        } else {
+          errorPass.innerHTML = "";
+        }
+
+        let ConPass = document.getElementById("passw").value;
+        let errorConPass = document.getElementById("errorConPass");
+
+        if (ConPass == "" || ConPass == null) {
+          errorConPass.innerHTML = "Xác nhận mật khẩu vui lòng không để trống!";
+        } else if (ConPass != passW) {
+          errorConPass.innerHTML = "Xác nhận mật khẩu không trùng khớp!";
+        } else {
+          errorConPass.innerHTML = "";
+        }
+
+        if (name && phone && email && ConPass && passW && passW == ConPass) {
+          // Người dùng đã nhập đúng thông tin
+          errorConPass.innerHTML = "Đăng ký thành công!";
+
+          // return true; thực hiện việc submit form
+        } else {
+        }
+
+        return false;
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
