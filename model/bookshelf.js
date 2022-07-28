@@ -73,7 +73,8 @@ class Bookshelf {
     });
   }
 seachByCateGory(name) {
-  let query = `SELECT TenSach,TenTheLoai,MoTa FROM theloai inner join sach on sach.Theloai_id = theloai.id WHERE tentheloai LIKE %${name}%`;
+  let query = `select TenSach,TenTheLoai,MoTa,TinhTrang from Sach join theloai  on sach.theloai_id = theloai.id
+  join tinhtrangsach on sach.tinhtrang_id = tinhtrangsach.id`;
   this.connection.query(query,(err,data)=> {
     if(err) {
       throw err.stack
@@ -85,7 +86,14 @@ seachByCateGory(name) {
 
 getBookshelfsCategory(name) {
   return new Promise((resolve, reject) => {
-    this.connection.query(`select * from Sach join theloai on sach.theloai_id = theloai.id where tentheloai like '%${name.search}%'`, (err, data) => {
+    this.connection.query(`select TenSach,Sach.MoTa as 'SachMoTa',TenTheLoai,TinhTrang,TenKho,Kho.Mota as 'KhoMoTa',SLDeSach,SLSachTrongKho from Sach join theloai on sach.theloai_id = theloai.id
+    join tinhtrangsach on sach.tinhtrang_id = tinhtrangsach.id
+    join kho on sach.kho_id = kho.id
+     where 		tentheloai like '%${name.search}%'
+			or tinhtrang like '%${name.search}%'
+            or tenkho like '%${name.search}%'
+            or TenSach like '%${name.search}%'
+            `, (err, data) => {
       if (err) {
         reject(err);
       } else {
@@ -96,7 +104,9 @@ getBookshelfsCategory(name) {
 }
 setBooksCategory() {
   return new Promise((resolve, reject) => {
-    let query = `select TenTheLoai,TenSach,MoTa,HinhAnh from Sach join theloai on sach.theloai_id = theloai.id`
+    let query = `select TenSach,Sach.MoTa as 'SachMoTa',TenTheLoai,TinhTrang,TenKho,Kho.Mota as 'KhoMoTa',SLDeSach,SLSachTrongKho from Sach join theloai on sach.theloai_id = theloai.id
+    join tinhtrangsach on sach.tinhtrang_id = tinhtrangsach.id
+    join kho on sach.kho_id = kho.id`
   this.connection.query(query,(err,data)=> {
     if(err) {
       reject(err)
@@ -106,6 +116,17 @@ setBooksCategory() {
   })
 }
 
+// setBooksStatus() {
+//   return new Promise((resolve, reject) => {
+//     let query = `select TenSach,MoTa,TinhTrang from Sach join tinhtrangsach on sach.tinhtrang_id = tinhtrangsach.id`
+//   this.connection.query(query,(err,data)=> {
+//     if(err) {
+//       reject(err)
+//     }
+//     resolve(data)
+//   })
+//   })
+// }
 }
 
 

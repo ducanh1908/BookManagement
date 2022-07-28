@@ -35,9 +35,6 @@ class User {
                }
            })
        }
-       createRole(user) {
-        
-       }
        getUserId(id) {
         return new Promise((resolve,rejesct)=>{
             let query = `select * from User where id = ${id}`;

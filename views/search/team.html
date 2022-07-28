@@ -640,7 +640,7 @@ body {
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/search">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Tìm kiếm</span>
 				</a>
@@ -671,9 +671,9 @@ body {
 		<nav>
 			<i class='bx bx-menu' ></i>
 			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
+			<form action="/search" method="POST">
 				<div class="form-input">
-					<input type="search" placeholder="Search...">
+					<input name="search" type="search" placeholder="Search...">
 					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 				</div>
 			</form>
@@ -741,29 +741,23 @@ body {
 						<h3>Recent Orders</h3>
 						<i class='bx bx-filter' ></i>
 					</div>
-					<select name="" id="unit">
-						<option value="Category" name="Category">Thể loại</option>
-						<option value="status" name="status">Tình trạng sách</option>
-						<option value="index" name="index">Vị trí sách</option>
-						<option value="findbyname" name="findbyname">Tìm theo cuốn sách đang có</option>
-					</select>
-					<form action="/search" method="post">
+					<!-- <form action="/search" method="post">
 						<div class="form-input">
 							<input name="search" type="search" placeholder="Search...">
 							<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
 						</div>
-					</form>
+					</form> -->
 				
 					<table class="table table-centered table-striped dt-responsive nowrap w-100" id="bookshelfs-datatable">
 					<thead>
 					  <tr>
 						<th style="width: 20px">
 						  <div class="custom-control custom-checkbox">
-							<input
+							<!-- <input
 							  type="checkbox"
 							  class="custom-control-input"
 							  id="customCheck0"
-							/>
+							/> -->
 							<label
 							  class="custom-control-label"
 							  for="customCheck0"
@@ -771,10 +765,14 @@ body {
 							>
 						  </div>
 						</th>
-						<td>Name</td>
-						<td>Description</td>
-						<td>Category</td>
-						<td>Image</td>
+						<td>Tên Sách</td>
+						<td>Mô tả Sách</td>
+						<td>Thể loại</td>
+						<td>Tình trạng</td>
+						<td>Tên kho</td>
+						<td>Mã kho</td>
+						<td>SL Đề Sách</td>
+						<td>SL Sách trong Kho</td>
 					  </tr>
 					</thead>
 					<tbody>	

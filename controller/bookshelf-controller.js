@@ -118,27 +118,26 @@ showSearch(req, res){
       console.log(`File không tồn tại`)
     } else {
         const bookshelfs = await this.bookshelf.setBooksCategory();
-        let tbody = ''              
+        let tbody = '';         
         bookshelfs.forEach((item, index)=>{
           tbody += ` <tr>
                                             <td>
                                                 <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck${
-                                                index + 1
-                                                }">
+                                          
                                                 <label class="custom-control-label" for="customCheck${
                                                 index + 1
                                                 }">&nbsp;</label>
                                                 </div>
                                             </td>
                                             <td>${item.TenSach}</td>
-                                            <td>${item.MoTa}</td>
-                                            <td>${item.TenTheLoai}</td> 
-                                            <td>${item.HinhAnh}</td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="action-icon btn btn-primary text-white">Edit</a>
-                                                <a href="javascript:void(0);" class="action-icon  btn btn-danger  text-white">Delete</a>
-                                            </td>
+                                            <td>${item.SachMoTa}</td>
+                                            <td>${item.TenTheLoai}</td>
+                                            <td>${item.TinhTrang}</td>
+                                            <td>${item.TenKho}</td>
+                                            <td>${item.KhoMoTa}</td>
+                                            <td>${item.SLDeSach}</td>
+                                            <td>${item.SLSachTrongKho}</td>
+
                                         </tr>`;
         })
         
@@ -165,28 +164,26 @@ showSearch(req, res){
               req.on("end", async() => {
                 let data2 = qs.parse(data1);
                 const bookshelfs = await this.bookshelf.getBookshelfsCategory(data2);
-                
                 let tbody = ''              
                 bookshelfs.forEach((item, index)=>{
                   tbody += ` <tr>
                                                     <td>
                                                         <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" id="customCheck${
-                                                                          index + 1
-                                                                        }">
+                                                                 
                                                                         <label class="custom-control-label" for="customCheck${
                                                                           index + 1
                                                                         }">&nbsp;</label>
                                                                     </div>
                                                     </td>
                                                     <td>${item.TenSach}</td>
-                                                    <td>${item.MoTa}</td>
-                                                    <td>${item.TenTheLoai}</td>
-                                                    <td>${item.HinhAnh}</td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" class="action-icon btn btn-primary text-white">Edit</a>
-                                                        <a href="javascript:void(0);" class="action-icon  btn btn-danger  text-white">Delete</a>
-                                                    </td>
+                                            <td>${item.SachMoTa}</td>
+                                            <td>${item.TenTheLoai}</td>
+                                            <td>${item.TinhTrang}</td>
+                                            <td>${item.TenKho}</td>
+                                            <td>${item.KhoMoTa}</td>
+                                            <td>${item.SLDeSach}</td>
+                                            <td>${item.SLSachTrongKho}</td>
+
                                                 </tr>`;
                 })
                 
