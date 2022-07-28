@@ -23,10 +23,12 @@
     width: 50px;;
     cursor: pointer;
 }
+
 .menu-icon {
-    width: 30px;
+    width: 50px;
     cursor: pointer;
     margin-left: 40px;
+   
 }
 nav {
     flex: 1;
